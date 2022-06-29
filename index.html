@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <h1>Rock-Paper-Scissors</h1>
+
+    <button id="clickMe" type="button" name="button">Click Me</button>
+    <h2 id="Rock"></h2>
+    <h2 id="Paper"></h2>
+    <h2 id="Scissors"></h2>
+
+    <script>
+
+document.getElementById('clickMe').addEventListener('click', makeReq)
+
+async function makeReq(){
+
+const click= document.querySelector("#clickMe");
+  const res = await fetch("http://127.0.0.1:8000/api")
+  const data = await res.json()
+
+  let value= Math.floor(Math.random() * 10)
+  if(value <= 3){
+    document.getElementById('Rock').innerText=data.Rock
+  }
+  else if(value >=3 &&value <=6 ){
+    document.getElementById('Paper').innerText=data.Paper
+  }
+  else if(value >6){
+    document.getElementById('Scissors').innerText=data.Scissors
+  }
+
+
+}
+    </script>
+  </body>
+</html>
+
